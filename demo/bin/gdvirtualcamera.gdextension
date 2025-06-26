@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "gdvirtualcamera_library_init"
+compatibility_minimum = "4.4"
+
+[libraries]
+; Relative paths ensure that our GDExtension can be placed anywhere in the project directory.
+linux.x86_64.single.debug = "./linux/libgd-virtualcamera.linux.template_debug.x86_64.so"
+linux.x86_64.double.debug = "./linux/libgd-virtualcamera.linux.template_debug.x86_64.double.so"
+linux.x86_64.single.release = "./linux/libgd-virtualcamera.linux.template_release.x86_64.so"
+linux.x86_64.double.release = "./linux/libgd-virtualcamera.linux.template_release.x86_64.double.so"
