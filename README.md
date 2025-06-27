@@ -24,3 +24,7 @@ You can do this with
 v4l2loopback-ctl add 1
 v4l2loopback-ctl set-caps /dev/video0 'AR24:1280x720@60/1' 
 ```
+
+
+https://github.com/user-attachments/assets/e8d83431-0099-427e-b414-b947e7ff822b
+
