@@ -68,7 +68,7 @@ _data = {
 
 [node name="V4L2" type="VirtualCamera" parent="." node_paths=PackedStringArray("viewport")]
 viewport = NodePath("../SubViewportContainer/SubViewport")
-loopback_device = "/dev/video4"
+loopback_device = "/dev/video0"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -80,7 +80,7 @@ grow_vertical = 2
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(640, 480)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]

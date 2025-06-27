@@ -17,3 +17,10 @@ Requires
 Adds a new `VirtualCamera` Node type that you can add to any scene.  Connect a reference of a SubViewport to it and the path to a V4L2 Loopback device.
 
 Make sure your loopback accepts 32-bit RGBA data and that your SubViewport's dimensions match the expected resolution.
+
+You can do this with
+
+```
+v4l2loopback-ctl add 1
+v4l2loopback-ctl set-caps /dev/video0 'AR24:1280x720@60/1' 
+```

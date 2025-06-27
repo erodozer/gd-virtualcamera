@@ -16,12 +16,7 @@ VirtualCamera::VirtualCamera()
 }
 
 VirtualCamera::~VirtualCamera() {
-	if (this->output != -1 ) {
-		// clear the virtual webcam on close
-		auto buf = PackedByteArray();
-		buf.resize(this->frame_size);
-		write(this->output, buf.ptrw(), frame_size);
-	}
+	
 }
 
 int32_t VirtualCamera::_connect_to_device() {
@@ -68,8 +63,23 @@ void VirtualCamera::_process(double _delta) {
 
 	auto img = this->source->get_texture()->get_image();
 	img->convert(Image::FORMAT_RGBA8);
-	auto frame = img->get_data().ptrw();
-	auto frame_size = img->get_data_size();
 
+	// swizzle the bytes, since OpenGL RGBA does not match V4L2 RGBA
+	auto data = img->get_data();  // note: this creates a copy
+	auto frame_size = img->get_data_size();
+	for (int i = 0; i < frame_size; i += 4) {
+		auto r = data[i];
+		auto g = data[i+1];
+		auto b = data[i+2];
+		auto a = data[i+3];
+
+		data[i] = b;
+		data[i+1] = g;
+		data[i+2] = r;
+		data[i+3] = a;
+	}
+
+	auto frame = data.ptrw();
+	
 	write(this->output, frame, frame_size);
 }
