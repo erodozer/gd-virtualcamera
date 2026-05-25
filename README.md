@@ -14,17 +14,20 @@ Requires
 
 ## Usage
 
-Adds a new `VirtualCamera` Node type that you can add to any scene.  Connect a reference of a SubViewport to it and the path to a V4L2 Loopback device.
+Adds a new `VirtualCamera` Node type that you can add to any scene.  The node will transmit the texture of its closest Viewport in the scenetree to the V4L2 Loopback device specified.
+
+If you wish to enumerate the number of V4L2 Loopback devices available on your machine, you can use the `get_devices()` function on any VirtualCamera instance.
+
+```
+var stream = %VirtualCamera
+for feed in stream.get_devices():
+	dropdown.add_item(feed.name)
+	dropdown.set_item_metadata(dropdown.item_count - 1, feed.id)
+```
 
 Make sure your loopback accepts 32-bit RGBA data and that your SubViewport's dimensions match the expected resolution.
 
 You can do this with
-
-```
-v4l2loopback-ctl add 1
-v4l2loopback-ctl set-caps /dev/video0 'AR24:1280x720@60/1' 
-```
-
 
 https://github.com/user-attachments/assets/e8d83431-0099-427e-b414-b947e7ff822b
 
