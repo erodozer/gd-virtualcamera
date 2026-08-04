@@ -4,5 +4,5 @@ compatibility_minimum = 4.7
 reloadable = false
 
 [libraries]
-linux.debug.x86_64 =     "res://addons/virtualcamera/lib/libgdvirtual_camera.debug.so"
-linux.release.x86_64 =   "res://addons/ayagami/lib/libayagami_gd.release.so"
+linux.debug.x86_64 =     "res://addons/virtualcamera/lib/libgd_virtualcamera.debug.so"
+linux.release.x86_64 =   "res://addons/virtualcamera/lib/libgd_virtualcamera.release.so"
