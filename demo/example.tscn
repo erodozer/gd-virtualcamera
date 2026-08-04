@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh0oj81pufivs"]
+[gd_scene format=3 uid="uid://dh0oj81pufivs"]
 
-[ext_resource type="Texture2D" uid="uid://dbx66sovxd1" path="res://icon.svg" id="1_2jas5"]
+[ext_resource type="Script" uid="uid://lroel17h1uvj" path="res://demo/example.gd" id="1_ae0iw"]
+[ext_resource type="Texture2D" uid="uid://nchsxknh6bfp" path="res://demo/icon.svg" id="2_3pck3"]
 
 [sub_resource type="Animation" id="Animation_n51mc"]
 length = 0.001
@@ -64,31 +65,29 @@ _data = {
 &"test": SubResource("Animation_2jas5")
 }
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" unique_id=2070364246]
+script = ExtResource("1_ae0iw")
 
-[node name="V4L2" type="VirtualCamera" parent="." node_paths=PackedStringArray("viewport")]
-viewport = NodePath("../SubViewportContainer/SubViewport")
-loopback_device = "/dev/video0"
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=156265865]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=149558436]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=805092229]
 position = Vector2(105, 297)
-texture = ExtResource("1_2jas5")
+texture = ExtResource("2_3pck3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
-libraries = {
-&"": SubResource("AnimationLibrary_8lvy3")
-}
-autoplay = "test"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport" unique_id=1342043475]
+libraries/ = SubResource("AnimationLibrary_8lvy3")
+autoplay = &"test"
+
+[node name="VirtualCamera" type="VirtualCamera" parent="SubViewportContainer/SubViewport" unique_id=1335901813]
+unique_name_in_owner = true

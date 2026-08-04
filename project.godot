@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="GDVirtualCamera"
-run/main_scene="uid://dh0oj81pufivs"
+run/main_scene="res://demo/example.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
