@@ -7,6 +7,6 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-godot = "0.5.4"
+godot = "0.5.5"
 libc = "0.2.189"
 v4l = "0.14.0"

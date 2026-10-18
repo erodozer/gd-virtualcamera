@@ -118,11 +118,9 @@ impl INode for VirtualCamera {
     fn ready(&mut self) {
         if !self.loopback_device.is_empty() {
             let vp = self.base().get_viewport().expect("node is not within viewport");
-            let binding = self.bind_to_viewport(vp);
-            if let Ok(_) = binding {
-                self.is_valid_device = true;
-            } else if let Err(msg) = binding {
-                godot_error!("{}", msg)
+            match self.bind_to_viewport(vp) {
+                Ok(_) => { self.is_valid_device = true; },
+                Err(msg) => { godot_error!("{}", msg); },
             }
         }
 
@@ -135,23 +133,22 @@ impl INode for VirtualCamera {
 
     fn on_set(&mut self, property: StringName, value: Variant) -> bool {
         if property == "loopback_device" {
-            if let Ok(device) = value.try_to::<GString>() {
-                self.loopback_device = device.clone();
-                
-                // clear value
-                if device.is_empty() {
-                    self.is_valid_device = false;
-                    return true;
-                }
+            let Ok(device) = value.try_to::<GString>() else { return false };
+            self.loopback_device = device.clone();
 
-                let vp = self.base().get_viewport().expect("node is not within viewport");
-                let binding = self.bind_to_viewport(vp);
-                if let Ok(_) = binding { 
+            // clear value
+            if device.is_empty() {
+                self.is_valid_device = false;
+                return true;
+            }
+
+            let vp = self.base().get_viewport().expect("node is not within viewport");
+            match self.bind_to_viewport(vp) {
+                Ok(_) => {
                     self.is_valid_device = true;
                     return true;
-                } else if let Err(msg) = binding {
-                    godot_error!("{}", msg)
                 }
+                Err(msg) => { godot_error!("{}", msg); }
             }
         }
 
